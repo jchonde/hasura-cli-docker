@@ -1,8 +1,29 @@
 # hasura-cli-docker
 
+## Setup
+
+Build the Docker image with (using Git)
+
+```sh
+docker build -t hasura-cli https://github.com/jchonde/hasura-cli-docker.git
+```
 
 ## Usage
 
+```sh
+docker run --rm -ti \
+-p 127.0.0.1:9695:9695/tcp -p 127.0.0.1:9693:9693 \
+-v "$(pwd)/migrations:/migrations" \
+hasura-cli --help
 ```
-docker run --rm -ti -p 127.0.0.1:8080:8080 -p 127.0.0.1:8081:8081  hasura-cli hasura console --address 0.0.0.0 --console-port 8080 --api-port 8081
+
+By default, the following cmd arguments are used:
+`console --no-browser --address 0.0.0.0 --endpoint http://host.docker.internal:80`
+
+You might want to setup an alias in your `~/.profile` file:
+
+```sh
+alias harusa='docker run --rm -ti -p 127.0.0.1:9695:9695/tcp -p 127.0.0.1:9693:9693 -v "$(pwd)/migrations:/migrations" hasura-cli'
 ```
+
+So that you can run `harusa --help` as if you had the binary installed.
