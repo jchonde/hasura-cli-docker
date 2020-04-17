@@ -11,7 +11,7 @@ RUN wget -q https://github.com/hasura/graphql-engine/releases/download/${HASURA_
 FROM scratch
 EXPOSE 9695/tcp 9693/tcp
 ENTRYPOINT [ "/hasura" ]
-CMD [ "console", "--no-browser", "--address", "0.0.0.0", "--endpoint", "http://host.docker.internal:80" ]
+CMD [ "console", "--no-browser", "--address", "0.0.0.0", "--endpoint", "http://host.docker.internal:8080/v1/graphql" ]
 VOLUME [ "/.hasura" ]
 COPY --from=download /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=download /usr/share/zoneinfo /usr/share/zoneinfo
