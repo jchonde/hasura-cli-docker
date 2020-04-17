@@ -2,7 +2,7 @@ ARG ALPINE_VERSION=3.11
 
 FROM alpine:${ALPINE_VERSION} AS download
 RUN apk add --update -q --progress --no-cache ca-certificates tzdata
-ARG HASURA_CLI_VERSION=v1.1.0
+ARG HASURA_CLI_VERSION=v1.1.1
 WORKDIR /hasura
 RUN touch config.yaml
 RUN wget -q https://github.com/hasura/graphql-engine/releases/download/${HASURA_CLI_VERSION}/cli-hasura-linux-amd64 -O hasura && \

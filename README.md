@@ -1,5 +1,7 @@
 # hasura-cli-docker
 
+Runs the [hasura CLI](https://github.com/hasura/graphql-engine) in a container
+
 ## Setup
 
 Build the Docker image with (using Git)
