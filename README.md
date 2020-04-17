@@ -1,5 +1,7 @@
 # hasura-cli-docker
 
+Runs the [hasura CLI](https://github.com/hasura/graphql-engine) in a container
+
 ## Setup
 
 Build the Docker image with (using Git)
@@ -18,7 +20,7 @@ hasura-cli --help
 ```
 
 By default, the following cmd arguments are used:
-`console --no-browser --address 0.0.0.0 --endpoint http://host.docker.internal:80`
+`console --no-browser --address 0.0.0.0 --endpoint http://host.docker.internal:8080/v1/graphql`
 
 You might want to setup an alias in your `~/.profile` file:
 

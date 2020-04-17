@@ -2,7 +2,7 @@ ARG ALPINE_VERSION=3.11
 
 FROM alpine:${ALPINE_VERSION} AS download
 RUN apk add --update -q --progress --no-cache ca-certificates tzdata
-ARG HASURA_CLI_VERSION=v1.1.0
+ARG HASURA_CLI_VERSION=v1.1.1
 WORKDIR /hasura
 RUN touch config.yaml
 RUN wget -q https://github.com/hasura/graphql-engine/releases/download/${HASURA_CLI_VERSION}/cli-hasura-linux-amd64 -O hasura && \
@@ -11,7 +11,7 @@ RUN wget -q https://github.com/hasura/graphql-engine/releases/download/${HASURA_
 FROM scratch
 EXPOSE 9695/tcp 9693/tcp
 ENTRYPOINT [ "/hasura" ]
-CMD [ "console", "--no-browser", "--address", "0.0.0.0", "--endpoint", "http://host.docker.internal:80" ]
+CMD [ "console", "--no-browser", "--address", "0.0.0.0", "--endpoint", "http://host.docker.internal:8080/v1/graphql" ]
 VOLUME [ "/.hasura" ]
 COPY --from=download /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=download /usr/share/zoneinfo /usr/share/zoneinfo
